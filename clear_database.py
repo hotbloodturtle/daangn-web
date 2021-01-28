@@ -30,4 +30,12 @@ user = User.objects.create_user(username='admin', email='admin@admin.com', passw
 
 from articles.models import Article
 for i in range(10):
-    Article.objects.create(title=f'title{i}', content=f'content{i}', user=user, price=i*1000)
+    Article.objects.create(
+        title=f'title{i}',
+        content=f'content{i}\n\n\n\n\n\n\n\n  hi',
+        price=i*1000,
+        address=f'ADDRESS {i}',
+        favorite=i*10,
+        chatting_count=i*8,
+        view_count=i*100,
+    )
