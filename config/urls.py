@@ -16,6 +16,5 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    # path('', TemplateView.as_view(template_name='index.html')),
     re_path(r'^(?P<path>.*)$', TemplateView.as_view(template_name='index.html')),
 ]
