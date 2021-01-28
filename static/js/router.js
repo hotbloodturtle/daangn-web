@@ -1,7 +1,7 @@
 import Home from "./routes/Home.js";
 import HotArticles from "./routes/HotArticles.js";
 
-const routes = {
+export const routes = {
   "/": Home,
   "/hot-articles": HotArticles,
 };
@@ -10,25 +10,40 @@ class Router {
   constructor() {
     this.renderRoot = this.renderRoot.bind(this);
     this.setPushState = this.setPushState.bind(this);
+    this.to = this.to.bind(this);
   }
-  renderRoot(pathName) {
-    var Component = routes[pathName];
-    if (!Component) {
+  renderRoot(el) {
+    if (!el) {
       window.location.href = "/";
+      return;
     }
-    var obj = new Component();
-    if (obj.hasOwnProperty("render")) {
-      var root = document.getElementById("root");
-      while (root.firstChild) {
-        root.removeChild(root.firstChild);
-      }
-      root.appendChild(obj.render());
+
+    const root = document.getElementById("root");
+    while (root.firstChild) {
+      root.removeChild(root.firstChild);
     }
+    root.appendChild(el);
   }
   setPushState(data = {}, title = "", pathName = "/") {
     window.history.pushState(data, title, pathName);
-    this.renderRoot(pathName);
+
+    const Component = routes[pathName];
+    const obj = new Component();
+    if (obj.hasOwnPropert("render")) {
+      this.renderRoot(obj.render());
+    }
   }
+  to(pathName, data = {}, title = "") {
+    window.history.pushState(data, title, pathName);
+    this.setRender(pathName);
+  }
+  setRender = (pathName) => {
+    const Component = routes[pathName];
+    const obj = new Component();
+    if (obj.hasOwnProperty("render")) {
+      this.renderRoot(obj.render());
+    }
+  };
 }
 
 export default Router;

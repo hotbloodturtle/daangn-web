@@ -8,7 +8,7 @@ class JQuery {
     success,
     error,
   }) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (this.status == 200 && this.readyState == this.DONE) {
         success(JSON.parse(this.responseText));
