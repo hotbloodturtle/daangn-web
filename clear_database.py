@@ -15,6 +15,10 @@ for app in apps:
     os.system(f'mkdir {app}/migrations')
     os.system(f'touch {app}/migrations/__init__.py')
 
+from django.db import connection
+with connection.cursor() as cursor:
+    cursor.execute('DROP TABLE django_migrations')
+
 os.system('python manage.py makemigrations')
 os.system('python manage.py migrate')
 
