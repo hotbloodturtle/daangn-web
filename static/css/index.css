@@ -1,0 +1,10 @@
+.header-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header-wrap .header-container {
+  width: 80%;
+  height: 70px;
+}

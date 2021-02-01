@@ -1,5 +1,6 @@
 import Home from "./routes/Home.js";
 import HotArticles from "./routes/HotArticles.js";
+import Header from "./common/Header.js";
 
 export const routes = {
   "/": Home,
@@ -22,6 +23,8 @@ class Router {
     while (root.firstChild) {
       root.removeChild(root.firstChild);
     }
+    const header = new Header().render();
+    root.appendChild(header);
     root.appendChild(el);
   }
   setPushState(data = {}, title = "", pathName = "/") {
