@@ -1,13 +1,17 @@
-import $ from "../utils/jquery.js";
 import Router from "../router.js";
+import { getStore } from "../state/store.js";
+import { getHotArticles } from "../state/modules/hotArticles.js";
+import { subscribe } from "../state/modules/hotArticles.js";
 
 class HotArticles {
-  constructor() {
+  constructor(parentNode) {
+    this.parentNode = parentNode;
     this.render = this.render.bind(this);
     this.state = { articles: [] };
     this.setState = this.setState.bind(this);
-    this.getArticles();
-    console.log(localStorage.getItem("hotArticles"));
+
+    getHotArticles();
+    subscribe(this.render);
   }
 
   setState(newState) {
@@ -16,36 +20,16 @@ class HotArticles {
     r.renderRoot(this.render());
   }
 
-  getArticles() {
-    const gql = JSON.stringify({
-      query: `{ articles { edges { node{
-                  id title content address price favorite
-                  chattingCount viewCount createdAt
-                  }}}}`,
-    });
-    $.ajax({
-      method: "post",
-      url: "http://localhost:8001/graphql",
-      data: gql,
-      success: (data) => {
-        const {
-          data: {
-            articles: { edges },
-          },
-        } = data;
-        this.setState({ articles: edges });
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
   render() {
+    const { hotArticles } = getStore();
+
     const div = document.createElement("div");
-    const { articles } = this.state;
-    div.innerText = `"HotArticles" ${articles}`;
-    return div;
+    div.innerText = hotArticles ? `"HotArticles" ${hotArticles}` : "loading...";
+
+    while (this.parentNode.firstChild) {
+      this.parentNode.removeChild(this.parentNode.firstChild);
+    }
+    this.parentNode.appendChild(div);
   }
 }
 export default HotArticles;

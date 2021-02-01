@@ -9,22 +9,14 @@ export const routes = {
 
 class Router {
   constructor() {
-    this.renderRoot = this.renderRoot.bind(this);
+    this.clearRoot = this.clearRoot.bind(this);
     this.to = this.to.bind(this);
+    this.root = document.getElementById("root");
   }
-  renderRoot(el) {
-    if (!el) {
-      window.location.href = "/";
-      return;
+  clearRoot() {
+    while (this.root.firstChild) {
+      this.root.removeChild(this.root.firstChild);
     }
-
-    const root = document.getElementById("root");
-    while (root.firstChild) {
-      root.removeChild(root.firstChild);
-    }
-    const header = new Header().render();
-    root.appendChild(header);
-    root.appendChild(el);
   }
   to(pathName, data, title = "") {
     window.history.pushState(data, title, pathName);
@@ -32,9 +24,10 @@ class Router {
   }
   setRender = (pathName) => {
     const Component = routes[pathName];
-    const obj = new Component();
+    const obj = new Component(this.root);
     if (obj.hasOwnProperty("render")) {
-      this.renderRoot(obj.render());
+      this.clearRoot();
+      obj.render();
     }
   };
 }

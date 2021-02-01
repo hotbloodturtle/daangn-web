@@ -9,11 +9,11 @@ class JQuery {
     error,
   }) {
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.status == 200 && this.readyState == this.DONE) {
-        success(JSON.parse(this.responseText));
-      } else if (this.status >= 400) {
-        error(this.responseText);
+    xhr.onreadystatechange = (e) => {
+      if (e.target.status == 200 && e.target.readyState == e.target.DONE) {
+        success(JSON.parse(e.target.responseText));
+      } else if (e.target.status >= 400) {
+        error(e.target.responseText);
       }
     };
     xhr.open(method, url);
