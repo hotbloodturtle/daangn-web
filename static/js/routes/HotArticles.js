@@ -7,6 +7,7 @@ class HotArticles {
     this.state = { articles: [] };
     this.setState = this.setState.bind(this);
     this.getArticles();
+    console.log(localStorage.getItem("hotArticles"));
   }
 
   setState(newState) {

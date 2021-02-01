@@ -11,6 +11,7 @@ class Header {
 
     const rightCon = document.createElement("div");
     headerCon.appendChild(rightCon);
+    rightCon.classList.add("right-container");
 
     const imageAnchor = document.createElement("a");
     rightCon.appendChild(imageAnchor);
@@ -23,10 +24,12 @@ class Header {
 
     const searchArea = document.createElement("div");
     rightCon.appendChild(searchArea);
+    searchArea.classList.add("search-area");
     const searchInput = document.createElement("input");
     searchArea.appendChild(searchInput);
+    searchInput.classList.add("search-input");
     searchInput.type = "text";
-    searchInput.placeholder = "동네이름, 물품명 등을 검색해보세요!";
+    searchInput.placeholder = "동네 이름, 물품명 등을 검색해보세요!";
 
     return headerWrap;
   }

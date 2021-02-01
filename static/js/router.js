@@ -10,7 +10,6 @@ export const routes = {
 class Router {
   constructor() {
     this.renderRoot = this.renderRoot.bind(this);
-    this.setPushState = this.setPushState.bind(this);
     this.to = this.to.bind(this);
   }
   renderRoot(el) {
@@ -27,16 +26,7 @@ class Router {
     root.appendChild(header);
     root.appendChild(el);
   }
-  setPushState(data = {}, title = "", pathName = "/") {
-    window.history.pushState(data, title, pathName);
-
-    const Component = routes[pathName];
-    const obj = new Component();
-    if (obj.hasOwnPropert("render")) {
-      this.renderRoot(obj.render());
-    }
-  }
-  to(pathName, data = {}, title = "") {
+  to(pathName, data, title = "") {
     window.history.pushState(data, title, pathName);
     this.setRender(pathName);
   }
