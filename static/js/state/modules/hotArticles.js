@@ -1,4 +1,3 @@
-import $ from "../../utils/jquery.js";
 import { setStore } from "../store.js";
 
 let changeListeners = [];
