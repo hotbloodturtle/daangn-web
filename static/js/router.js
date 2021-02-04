@@ -1,12 +1,12 @@
-import Home from "./pages/Home.js";
-import HotArticles from "./pages/HotArticles.js";
+import PageHome from "./pages/PageHome.js";
+import PageHotArticles from "./pages/PageHotArticles.js";
 import App from "./App.js";
 
 class Router {
   constructor() {
     this.routes = {
-      "/": Home,
-      "/hot-articles": HotArticles,
+      "/": PageHome,
+      "/hot-articles": PageHotArticles,
     };
     this.to = this.to.bind(this);
     this.root = document.getElementById("root");

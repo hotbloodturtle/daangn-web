@@ -1,7 +1,7 @@
 import { getStore } from "../state/store.js";
 import { getHotArticles, subscribe } from "../state/modules/hotArticles.js";
 
-class HotArticles {
+class PageHotArticles {
   constructor() {
     this.className = "hot-articles";
     this.render = this.render.bind(this);
@@ -31,4 +31,4 @@ class HotArticles {
     });
   }
 }
-export default HotArticles;
+export default PageHotArticles;

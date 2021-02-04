@@ -1,6 +1,6 @@
 import Router from "../router.js";
 
-class Home {
+class PageHome {
   constructor() {}
 
   render() {
@@ -17,4 +17,4 @@ class Home {
     return node;
   }
 }
-export default Home;
+export default PageHome;
