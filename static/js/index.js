@@ -1,10 +1,10 @@
-import Router from "./router.js";
+import App from "./App.js";
+
+const app = new App();
 
 window.addEventListener("DOMContentLoaded", () => {
-  const router = new Router();
-  router.setRender(window.location.pathname);
-
-  window.onpopstate = (e) => {
-    router.setRender(window.location.pathname);
-  };
+  app.init();
 });
+window.onpopstate = () => {
+  app.init();
+};

@@ -1,35 +1,34 @@
-import Router from "../router.js";
 import { getStore } from "../state/store.js";
-import { getHotArticles } from "../state/modules/hotArticles.js";
-import { subscribe } from "../state/modules/hotArticles.js";
+import { getHotArticles, subscribe } from "../state/modules/hotArticles.js";
 
 class HotArticles {
-  constructor(parentNode) {
-    this.parentNode = parentNode;
+  constructor() {
+    this.className = "hot-articles";
     this.render = this.render.bind(this);
-    this.state = { articles: [] };
-    this.setState = this.setState.bind(this);
+    this.draw = this.draw.bind(this);
 
     getHotArticles();
-    subscribe(this.render);
-  }
-
-  setState(newState) {
-    this.state = Object.assign({}, this.state, newState);
-    const r = new Router();
-    r.renderRoot(this.render());
+    subscribe(this.draw);
   }
 
   render() {
     const { hotArticles } = getStore();
 
-    const div = document.createElement("div");
-    div.innerText = hotArticles ? `"HotArticles" ${hotArticles}` : "loading...";
+    const node = document.createElement("div");
+    node.classList.add(this.className);
+    node.innerText = hotArticles
+      ? `"HotArticles" ${hotArticles}`
+      : "loading...";
 
-    while (this.parentNode.firstChild) {
-      this.parentNode.removeChild(this.parentNode.firstChild);
-    }
-    this.parentNode.appendChild(div);
+    return node;
+  }
+
+  draw() {
+    const newNode = this.render();
+    const nodes = document.querySelectorAll(`.${this.className}`);
+    nodes.forEach((item) => {
+      item.outerHTML = newNode.outerHTML;
+    });
   }
 }
 export default HotArticles;

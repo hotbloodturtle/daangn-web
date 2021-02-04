@@ -1,14 +1,11 @@
 import Router from "../router.js";
 
 class Home {
-  constructor(parentNode) {
-    this.parentNode = parentNode;
-    this.render = this.render.bind(this);
-  }
+  constructor() {}
 
   render() {
-    const div = document.createElement("div");
-    div.innerText = "Home";
+    const node = document.createElement("div");
+    node.innerText = "Home";
 
     const btn = document.createElement("button");
     btn.innerText = "버튼";
@@ -16,8 +13,8 @@ class Home {
       const router = new Router();
       router.to("/hot-articles");
     });
-    div.appendChild(btn);
-    this.parentNode.appendChild(div);
+    node.appendChild(btn);
+    return node;
   }
 }
 export default Home;
