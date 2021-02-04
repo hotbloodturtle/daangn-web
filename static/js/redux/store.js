@@ -6,5 +6,4 @@ export const getStore = () => {
 
 export const setStore = (newStore) => {
   store = { ...store, ...newStore };
-  // console.log(store);
 };
