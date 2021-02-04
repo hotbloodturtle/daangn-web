@@ -1,34 +1,15 @@
-import { getStore } from "../state/store.js";
-import { getHotArticles, subscribe } from "../state/modules/hotArticles.js";
+import ConHotArticles from "../containers/ConHotArticles.js";
 
 class PageHotArticles {
-  constructor() {
-    this.className = "hot-articles";
-    this.render = this.render.bind(this);
-    this.draw = this.draw.bind(this);
-
-    getHotArticles();
-    subscribe(this.draw);
-  }
+  constructor() {}
 
   render() {
-    const { hotArticles } = getStore();
-
     const node = document.createElement("div");
-    node.classList.add(this.className);
-    node.innerText = hotArticles
-      ? `"HotArticles" ${hotArticles}`
-      : "loading...";
+
+    const conHotArticles = new ConHotArticles().render();
+    node.appendChild(conHotArticles);
 
     return node;
-  }
-
-  draw() {
-    const newNode = this.render();
-    const nodes = document.querySelectorAll(`.${this.className}`);
-    nodes.forEach((item) => {
-      item.outerHTML = newNode.outerHTML;
-    });
   }
 }
 export default PageHotArticles;

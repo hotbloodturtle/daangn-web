@@ -1,7 +1,10 @@
 let store = {};
 
-export const getStore = () => store;
+export const getStore = () => {
+  return { ...store };
+};
 
-export const setStore = (data) => {
-  store = Object.assign({}, store, data);
+export const setStore = (newStore) => {
+  store = { ...store, ...newStore };
+  // console.log(store);
 };
