@@ -1,5 +1,5 @@
-import Home from "./routes/Home.js";
-import HotArticles from "./routes/HotArticles.js";
+import Home from "./pages/Home.js";
+import HotArticles from "./pages/HotArticles.js";
 import App from "./App.js";
 
 class Router {
