@@ -1,20 +1,11 @@
 import { getHotArticles } from "../apis/articles.apis.js";
 import { articlesReducer } from "../reducers/articles.reducers.js";
+import { publish } from "../pubsub.js";
 
 export const HOT_ARTICLE_LIST = "HOT_ARTICLE_LIST";
 
-let changeListeners = {
-  HOT_ARTICLE_LIST: [],
-};
-
-export const subscribe = (type, dispatch) => {
-  changeListeners[type].push(dispatch);
-};
-
-export const publish = (type) => {
-  changeListeners[type].forEach((changeListener) => {
-    changeListener();
-  });
+export const test = {
+  HOT_ARTICLE_LIST: HOT_ARTICLE_LIST,
 };
 
 export const hotArticlesAction = () => {

@@ -1,8 +1,6 @@
 import { getStore } from "../redux/store.js";
-import {
-  subscribe,
-  HOT_ARTICLE_LIST,
-} from "../redux/actions/articles.actions.js";
+import { subscribe } from "../redux/pubsub.js";
+import { HOT_ARTICLE_LIST } from "../redux/actions/articles.actions.js";
 
 class HotArticles {
   constructor() {
