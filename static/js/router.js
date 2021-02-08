@@ -8,7 +8,6 @@ class Router {
       "/": PageHome,
       "/hot-articles": PageHotArticles,
     };
-    this.to = this.to.bind(this);
     this.root = document.getElementById("root");
   }
 

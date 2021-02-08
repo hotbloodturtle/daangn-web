@@ -1,9 +1,30 @@
-let store = {};
+class Store {
+  constructor() {
+    this.store = {};
+    this.changeListeners = {};
+  }
+  getStore() {
+    return { ...this.store };
+  }
+  setStore(newStore) {
+    this.store = { ...this.store, ...newStore };
+  }
+  subscribe = (type, dispatch) => {
+    if (!Array.isArray(this.changeListeners[type])) {
+      this.changeListeners[type] = [];
+    }
+    this.changeListeners[type].push(dispatch);
+  };
+  publish = (type) => {
+    if (!Array.isArray(this.changeListeners[type])) {
+      this.changeListeners[type] = [];
+    }
+    this.changeListeners[type].forEach((changeListener) => {
+      changeListener();
+    });
+  };
+}
 
-export const getStore = () => {
-  return { ...store };
-};
+const store = new Store();
 
-export const setStore = (newStore) => {
-  store = { ...store, ...newStore };
-};
+export default store;

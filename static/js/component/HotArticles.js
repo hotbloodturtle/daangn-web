@@ -1,17 +1,13 @@
-import { getStore } from "../redux/store.js";
-import { subscribe } from "../redux/pubsub.js";
+import store from "../redux/store.js";
 import { HOT_ARTICLE_LIST } from "../redux/actions/articles.actions.js";
 
 class HotArticles {
   constructor() {
     this.className = "hot-articles";
-    this.render = this.render.bind(this);
-    this.draw = this.draw.bind(this);
-
-    subscribe(HOT_ARTICLE_LIST, this.draw);
+    store.subscribe(HOT_ARTICLE_LIST, this.draw.bind(this));
   }
   render() {
-    const { hotArticles } = getStore();
+    const { hotArticles } = store.getStore();
 
     const node = document.createElement("div");
     node.classList.add(this.className);
