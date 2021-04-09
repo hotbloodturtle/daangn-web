@@ -1,4 +1,5 @@
 import ButtonAppDownload from "../component/ButtonAppDownload.js";
+import IconSearch from "../component/IconSearch.js";
 import setStyle from "../utils/setStyle.js";
 
 const css = `
@@ -23,6 +24,7 @@ const css = `
     margin-left: 35px;
     border-radius: 3px;
     height: 40px;
+    position: relative;
   }
   .header-container .search-area .search-input {
     border: none;
@@ -80,6 +82,9 @@ class Header {
     searchInput.classList.add("search-input");
     searchInput.type = "text";
     searchInput.placeholder = "동네 이름, 물품명 등을 검색해보세요!";
+
+    const iconSearch = new IconSearch().render();
+    searchArea.appendChild(iconSearch);
 
     const rightCon = document.createElement("div");
     headerCon.appendChild(rightCon);
